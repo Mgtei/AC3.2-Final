@@ -13,7 +13,7 @@ import Firebase
 class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     let transition = CircularTransition()
     var currentUser: User?
-    var currenUserId: String?
+    var currentUserId: String?
     
     var gravity: UIGravityBehavior!
     var animator: UIDynamicAnimator!
@@ -30,7 +30,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
             dump("Current User \(FIRAuth.auth()!.currentUser!.uid)")
             if let uid = FIRAuth.auth()?.currentUser?.uid {
                 fetchUser(uid)
-                //self.currentUserId = uid
+                self.currentUserId = uid
             }
         }
     }
@@ -206,7 +206,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     internal lazy var usernameTextField: UITextField = {
         let textField = UITextField()
-        textField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
+        textField.attributedPlaceholder = NSAttributedString(string: "Username/Email", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
         textField.textColor = UIColor.lightGray
         return textField
     }()
