@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //tabBarController.tabBar.barTintColor = EyeVoteColor.lightPrimaryColor
         
         //navController1.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
-        navController1.navigationBar.topItem?.title = "CATEGORIES"
+        navController1.navigationBar.topItem?.title = "LOG IN / REGISTER"
         
         //navController2.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
         //navController2.navigationBar.topItem?.title = "UPLOAD"

@@ -20,6 +20,8 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.white
+
         setupViewHierarchy()
         configureConstraints()
         
