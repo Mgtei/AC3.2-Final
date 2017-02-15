@@ -18,6 +18,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        
+        let tabBarController = UITabBarController()
+        let loginVC = ViewController()
+        //let galleryVC = GalleryViewController()
+        //let uploadVC = UploadViewController()
+        //let navController1 = UINavigationController(rootViewController: galleryVC)
+        //let navController2 = UINavigationController(rootViewController: uploadVC)
+        //let navController3 = UINavigationController(rootViewController: loginVC)
+        
+        let navController1 = UINavigationController(rootViewController: loginVC)
+        //let navController3 = UINavigationController(rootViewController: galleryVC)
+        tabBarController.viewControllers = [navController1]
+        //navController2, navController3]
+        //UITabBar.appearance().tintColor = EyeVoteColor.accentColor
+        loginVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "chickenleg"), tag: 0)
+        //galleryVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "upload"), tag: 1)
+        //uploadVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "camera_icon"), tag: 2)
+        
+        //tabBarController.tabBar.barTintColor = EyeVoteColor.lightPrimaryColor
+        
+        //navController1.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
+        navController1.navigationBar.topItem?.title = "CATEGORIES"
+        
+        //navController2.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
+        //navController2.navigationBar.topItem?.title = "UPLOAD"
+        
+        
+        //navController3.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
+        //navController3.navigationBar.topItem?.title = "PROFILE"
+        
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+        
+        let navigationBar = UINavigationController()
+        navigationBar.setToolbarHidden(false, animated: false)
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = tabBarController
+        //self.window?.rootViewController = GalleryDetailViewController()
+        //self.window?.rootViewController = GalleryCollectionViewController()
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
