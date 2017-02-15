@@ -29,20 +29,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController3 = UINavigationController(rootViewController: galleryVC)
         tabBarController.viewControllers = [navController1, navController2, navController3]
         //UITabBar.appearance().tintColor = EyeVoteColor.accentColor
-        loginVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "chickenleg"), tag: 0)
-        galleryVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "upload"), tag: 1)
-        uploadVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "camera_icon"), tag: 2)
+        loginVC.tabBarItem = UITabBarItem(title: "Enter", image: #imageLiteral(resourceName: "upload"), tag: 0)
+        galleryVC.tabBarItem = UITabBarItem(title: "Feed", image: #imageLiteral(resourceName: "chickenleg"), tag: 1)
+        uploadVC.tabBarItem = UITabBarItem(title: "Gallery", image: #imageLiteral(resourceName: "camera_icon"), tag: 2)
         
         //tabBarController.tabBar.barTintColor = EyeVoteColor.lightPrimaryColor
         
-        //navController1.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
+        navController1.navigationBar.barTintColor = UIColor.white
         navController1.navigationBar.topItem?.title = "LOG IN / REGISTER"
         
-        //navController2.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
+        navController2.navigationBar.barTintColor = UIColor.white
         navController2.navigationBar.topItem?.title = "Unit6Final-stagram"
         
         
-        //navController3.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
+        navController3.navigationBar.barTintColor = UIColor.white
         navController3.navigationBar.topItem?.title = "Unit6Final-stagram"
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
@@ -54,8 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = tabBarController
-        //self.window?.rootViewController = GalleryDetailViewController()
-        //self.window?.rootViewController = GalleryCollectionViewController()
         self.window?.makeKeyAndVisible()
         
         return true

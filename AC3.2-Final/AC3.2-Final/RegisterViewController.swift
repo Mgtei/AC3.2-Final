@@ -91,7 +91,6 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
             if error != nil {
                 print("error adding user \(error)")
                 
-                //
                 // Error Messages
                 if !(self.emailTextField.text?.contains("@"))!{
                     let alertController = UIAlertController(title: "Error: \(error)", message: "Make sure you enter a usable email address.", preferredStyle: .alert)
@@ -159,7 +158,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     private func registerUserIntoDatabaseWithUID(uid: String, values: [String: AnyObject]) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://eyevotetest.firebaseio.com/")
+        let ref = FIRDatabase.database().reference(fromURL: "https://ac-32-final.firebaseio.com/")
         let usersReference = ref.child("users").child(uid)
         
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
@@ -185,9 +184,9 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
     
     internal lazy var registerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("REGISTER", for: .normal)
-        //button.setTitleColor(EyeVoteColor.textIconColor, for: .normal)
-        //button.layer.borderColor = EyeVoteColor.textIconColor.cgColor
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(UIColor.darkGray, for: .normal)
+        button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 0.8
         button.addTarget(self, action: #selector(tappedRegisterButton(sender:)), for: .touchUpInside)
         return button
@@ -197,8 +196,8 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
     internal lazy var name: UITextField = {
         let textField = UITextField()
         
-//        textField.textColor = EyeVoteColor.textIconColor
-        textField.attributedPlaceholder = NSAttributedString(string: "NAME", attributes: [NSForegroundColorAttributeName : UIColor.black ])
+        textField.textColor = UIColor.lightGray
+        textField.attributedPlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
         
         return textField
     }()
@@ -206,8 +205,8 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
     internal lazy var emailTextField: UITextField = {
         let textField = UITextField()
         
-        //textField.textColor = EyeVoteColor.textIconColor
-        textField.attributedPlaceholder = NSAttributedString(string: "EMAIL", attributes: [NSForegroundColorAttributeName : UIColor.black ])
+        textField.textColor = UIColor.lightGray
+        textField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
         
         return textField
     }()
@@ -215,9 +214,8 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
     internal lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         
-        textField.attributedPlaceholder = NSAttributedString(string: "PASSWORD", attributes: [NSForegroundColorAttributeName : UIColor.black ])
+        textField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
    
         return textField
     }()
-    
 }

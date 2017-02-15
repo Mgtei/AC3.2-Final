@@ -88,7 +88,7 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
         guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
         guard let imageTitle = photoTitletextField.text else { return }
         let ref = FIRDatabase.database().reference()
-        let storage = FIRStorage.storage().reference(forURL: "gs://eyevotetest.appspot.com")
+        let storage = FIRStorage.storage().reference(forURL: "gs://ac-32-final.appspot.com")
         
         let key = ref.child("uploads").childByAutoId().key
         let imageRef = storage.child("uploads").child(uid).child("\(key).jpg")

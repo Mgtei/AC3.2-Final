@@ -27,7 +27,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         
         //checks if user is logged in
         if FIRAuth.auth()?.currentUser != nil {
-            dump("CURRENT USER HERE \(FIRAuth.auth()!.currentUser!.uid)")
+            dump("Current User \(FIRAuth.auth()!.currentUser!.uid)")
             if let uid = FIRAuth.auth()?.currentUser?.uid {
                 fetchUser(uid)
                 //self.currentUserId = uid
@@ -223,7 +223,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(UIColor.darkGray, for: .normal)
-        //button.layer.borderColor = EyeVoteColor.textIconColor.cgColor
+        button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 0.8
         return button
     }()
@@ -232,7 +232,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.darkGray, for: .normal)
-        //button.layer.borderColor = EyeVoteColor.textIconColor.cgColor
+        button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 0.8
         return button
     }()
