@@ -99,7 +99,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
                 //dump(value)
                 if let name = value["name"] as? String {
                     let userName = User(name: name, email: "", password: "")
-                    //self.currentUser = userName
+                    self.currentUser = userName
                 }
             }
         })
@@ -206,24 +206,23 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     internal lazy var usernameTextField: UITextField = {
         let textField = UITextField()
-        //textField.textColor = EyeVoteColor.textIconColor
-        textField.attributedPlaceholder = NSAttributedString(string: "USERNAME", attributes: [NSForegroundColorAttributeName : UIColor.black ])
-        //textField.textColor = EyeVoteColor.textIconColor
+        textField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
+        textField.textColor = UIColor.lightGray
         return textField
     }()
     
     internal lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.attributedPlaceholder = NSAttributedString(string: "PASSWORD", attributes: [NSForegroundColorAttributeName : UIColor.black ])
-        //textField.textColor = EyeVoteColor.textIconColor
+        textField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
+        textField.textColor = UIColor.lightGray
         textField.isSecureTextEntry = true
         return textField
     }()
     
     internal lazy var loginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("LOG IN", for: .normal)
-       // button.setTitleColor(EyeVoteColor.textIconColor, for: .normal)
+        button.setTitle("Log In", for: .normal)
+        button.setTitleColor(UIColor.darkGray, for: .normal)
         //button.layer.borderColor = EyeVoteColor.textIconColor.cgColor
         button.layer.borderWidth = 0.8
         return button
@@ -231,8 +230,8 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     internal lazy var registerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("REGISTER", for: .normal)
-        //button.setTitleColor(EyeVoteColor.textIconColor, for: .normal)
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(UIColor.darkGray, for: .normal)
         //button.layer.borderColor = EyeVoteColor.textIconColor.cgColor
         button.layer.borderWidth = 0.8
         return button
