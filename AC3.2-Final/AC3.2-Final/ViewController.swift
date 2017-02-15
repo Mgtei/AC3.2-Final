@@ -207,14 +207,16 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     internal lazy var usernameTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "Username/Email", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
-        textField.textColor = UIColor.lightGray
+        textField.textColor = UIColor.black 
+        textField.backgroundColor = UIColor.lightGray
         return textField
     }()
     
     internal lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
-        textField.textColor = UIColor.lightGray
+        textField.textColor = UIColor.black
+        textField.backgroundColor = UIColor.lightGray
         textField.isSecureTextEntry = true
         return textField
     }()
