@@ -21,20 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = UITabBarController()
         let loginVC = ViewController()
-        //let galleryVC = GalleryViewController()
-        //let uploadVC = UploadViewController()
-        //let navController1 = UINavigationController(rootViewController: galleryVC)
-        //let navController2 = UINavigationController(rootViewController: uploadVC)
-        //let navController3 = UINavigationController(rootViewController: loginVC)
+        let galleryVC = GalleryViewController()
+        let uploadVC = UploadViewController()
+        let navController2 = UINavigationController(rootViewController: uploadVC)
         
         let navController1 = UINavigationController(rootViewController: loginVC)
-        //let navController3 = UINavigationController(rootViewController: galleryVC)
-        tabBarController.viewControllers = [navController1]
-        //navController2, navController3]
+        let navController3 = UINavigationController(rootViewController: galleryVC)
+        tabBarController.viewControllers = [navController1, navController2, navController3]
         //UITabBar.appearance().tintColor = EyeVoteColor.accentColor
         loginVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "chickenleg"), tag: 0)
-        //galleryVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "upload"), tag: 1)
-        //uploadVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "camera_icon"), tag: 2)
+        galleryVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "upload"), tag: 1)
+        uploadVC.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "camera_icon"), tag: 2)
         
         //tabBarController.tabBar.barTintColor = EyeVoteColor.lightPrimaryColor
         
@@ -42,15 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController1.navigationBar.topItem?.title = "LOG IN / REGISTER"
         
         //navController2.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
-        //navController2.navigationBar.topItem?.title = "UPLOAD"
+        navController2.navigationBar.topItem?.title = "Unit6Final-stagram"
         
         
         //navController3.navigationBar.barTintColor = EyeVoteColor.darkPrimaryColor
-        //navController3.navigationBar.topItem?.title = "PROFILE"
+        navController3.navigationBar.topItem?.title = "Unit6Final-stagram"
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGray]
         
         let navigationBar = UINavigationController()
         navigationBar.setToolbarHidden(false, animated: false)
