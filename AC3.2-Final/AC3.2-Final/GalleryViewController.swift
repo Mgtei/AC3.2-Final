@@ -19,8 +19,6 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         setupViewHierarchy()
         populatePosts()
-        //if the user's not logged in we present the login view controller
-        //if succeed then it will dissmiss itselff
         
         //checks if user is logged in
         if FIRAuth.auth()?.currentUser == nil {
@@ -45,34 +43,6 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.present(vc, animated: true, completion: nil)
         return
     }
-    
-//        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
-//            self.populatePosts()
-//        })
-//    }
-    
-    //}
-    
-    
-    //MARK: - Download images from firebase
-    //    func fetchPhotos(_ category: String) {
-    //        let ref = FIRDatabase.database().reference()
-    //        ref.child("Categories").child(category).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-    //            let categories = snapshot.value as! [String: AnyObject]
-    //
-    //            for (_,value) in categories {
-    //
-    //                if let photoUrl = value["pathToImage"] as? String,
-    //                    let category = value["category"] as? String {
-    //                    let photo = Photo(photoURL: photoUrl, category: category)
-    //                    self.photos.append(photo)
-    //                }
-    //            }
-    //            self.categoryTableView.reloadData()
-    //
-    //        })
-    //        ref.removeAllObservers()
-    //    }
     
     func populatePosts() {
         let ref = FIRDatabase.database().reference()
@@ -133,18 +103,6 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         return cell
     }
-    
-    
-    //    //navigationController?.pushViewController(galleryCollectionView, animated: true)
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let selectedRow = indexPath.row
-    //        self.category = categories[selectedRow]
-    //        let galleryCollectionView = GalleryCollectionViewController()
-    //        galleryCollectionView.categorySelected = categories[selectedRow]
-    //
-    //        navigationController?.pushViewController(galleryCollectionView, animated: true)
-    //    }
-    //
     
     // MARK: - Lazy TableView
     internal lazy var categoryTableView: UITableView = {
