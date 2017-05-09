@@ -72,14 +72,14 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
         })
     }
     
-    //    func gesturesAndControl() {
-    //        registerButton.addTarget(self, action: #selector(tappedRegisterButton(sender:)), for: .touchUpInside)
-    //    }
+        func gesturesAndControl() {
+            registerButton.addTarget(self, action: #selector(tappedRegisterButton(sender:)), for: .touchUpInside)
+        }
     
     //MARK: - Setup user data
        internal func tappedRegisterButton(sender: UIButton) {
         print("Register pressed")
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = name.text else {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("cannot validate username/password")
             return
         }
@@ -108,7 +108,7 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
                 }
                 
                 if !(self.emailTextField.text?.contains("@"))!{
-                    let alertController = UIAlertController(title: "Error", message: "Please enter a ca usable email address.", preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Error", message: "Please enter a usable email address.", preferredStyle: .alert)
                     let defautAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alertController.addAction(defautAction)
                     self.present(alertController, animated: true, completion: nil)
@@ -129,12 +129,12 @@ class RegisterViewController: UIViewController, UINavigationControllerDelegate {
                 return
             }
             
-            let changeRequest = FIRAuth.auth()!.currentUser!.profileChangeRequest()
-            changeRequest.displayName = self.name.text!
-            changeRequest.commitChanges(completion: nil)
+//            let changeRequest = FIRAuth.auth()!.currentUser!.profileChangeRequest()
+//            changeRequest.displayName = self.name.text!
+//            changeRequest.commitChanges(completion: nil)
             
             //successfully authenticated user
-            let imageName = NSUUID().uuidString
+//            let imageName = NSUUID().uuidString
             //let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).png")
             
 //            if let uploadData = UIImagePNGRepresentation(self.profileImage.image!) {

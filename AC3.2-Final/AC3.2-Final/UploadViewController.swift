@@ -13,7 +13,7 @@ import Firebase
 class UploadViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var user: User?
-    var photos = [Photo]()
+    var post = [Post]()
     let picker = UIImagePickerController()
     let categories = ["one category"]
     var categoryLabel = ""
@@ -208,21 +208,21 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoriesUploadCollectionViewCell
-        let category = categories[indexPath.row]
-        cell.categoriesLabel.text = category
-        
-        
-        let gallerycollectionView = GalleryCollectionViewController()
-        gallerycollectionView.categorySelected = category
-        //present(gallerycollectionView, animated: true, completion: nil)
-        navigationController?.pushViewController(gallerycollectionView, animated: true)
-        
-        
-        //for firebase
-        self.categoryLabel = category
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoriesUploadCollectionViewCell
+//        let category = categories[indexPath.row]
+//        cell.categoriesLabel.text = category
+//        
+//        
+//        let gallerycollectionView = GalleryCollectionViewController()
+//        gallerycollectionView.categorySelected = category
+//        //present(gallerycollectionView, animated: true, completion: nil)
+//        navigationController?.pushViewController(gallerycollectionView, animated: true)
+//        
+//        
+//        //for firebase
+//        self.categoryLabel = category
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

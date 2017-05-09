@@ -20,30 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         let tabBarController = UITabBarController()
-        let loginVC = ViewController()
+        //let loginVC = ViewController()
         let galleryVC = GalleryViewController()
         let uploadVC = UploadViewController()
-        let navController2 = UINavigationController(rootViewController: uploadVC)
         
-        let navController1 = UINavigationController(rootViewController: loginVC)
-        let navController3 = UINavigationController(rootViewController: galleryVC)
-        tabBarController.viewControllers = [navController1, navController2, navController3]
+        //let navController1 = UINavigationController(rootViewController: loginVC)
+        let navControllerLeft = UINavigationController(rootViewController: galleryVC)
+        let navControllerRight = UINavigationController(rootViewController: uploadVC)
+        tabBarController.viewControllers = [navControllerLeft, navControllerRight]
         //UITabBar.appearance().tintColor = EyeVoteColor.accentColor
-        loginVC.tabBarItem = UITabBarItem(title: "Enter", image: #imageLiteral(resourceName: "upload"), tag: 0)
+        //loginVC.tabBarItem = UITabBarItem(title: "Enter", image: #imageLiteral(resourceName: "upload"), tag: 0)
         galleryVC.tabBarItem = UITabBarItem(title: "Feed", image: #imageLiteral(resourceName: "chickenleg"), tag: 1)
         uploadVC.tabBarItem = UITabBarItem(title: "Gallery", image: #imageLiteral(resourceName: "camera_icon"), tag: 2)
         
         //tabBarController.tabBar.barTintColor = EyeVoteColor.lightPrimaryColor
         
-        navController1.navigationBar.barTintColor = UIColor.white
-        navController1.navigationBar.topItem?.title = "LOG IN / REGISTER"
+        //navControllerLeft.navigationBar.barTintColor = UIColor.white
+        //navControllerLeft.navigationBar.topItem?.title = "LOG IN / REGISTER"
         
-        navController2.navigationBar.barTintColor = UIColor.white
-        navController2.navigationBar.topItem?.title = "Unit6Final-stagram"
+        navControllerLeft.navigationBar.barTintColor = UIColor.white
+        navControllerLeft.navigationBar.topItem?.title = "Unit6Final-stagram"
         
         
-        navController3.navigationBar.barTintColor = UIColor.white
-        navController3.navigationBar.topItem?.title = "Unit6Final-stagram"
+        navControllerRight.navigationBar.barTintColor = UIColor.white
+        navControllerRight.navigationBar.topItem?.title = "Unit6Final-stagram"
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         let navigationBarAppearace = UINavigationBar.appearance()

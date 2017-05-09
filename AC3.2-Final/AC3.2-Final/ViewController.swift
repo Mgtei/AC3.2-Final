@@ -4,11 +4,12 @@
 //
 //  Created by Jason Gresh on 2/14/17.
 //  Copyright © 2017 C4Q. All rights reserved.
-//
+//commit and clean up, progress fwd
 
 import UIKit
 import SnapKit
 import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     let transition = CircularTransition()
@@ -21,19 +22,12 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-
+        
         setupViewHierarchy()
         configureConstraints()
-        
-        //checks if user is logged in
-        if FIRAuth.auth()?.currentUser != nil {
-            dump("Current User \(FIRAuth.auth()!.currentUser!.uid)")
-            if let uid = FIRAuth.auth()?.currentUser?.uid {
-                fetchUser(uid)
-                self.currentUserId = uid
-            }
-        }
+        buttonFunctions()
     }
+    
     
     // MARK: - Setup
     func setupViewHierarchy() {
@@ -89,22 +83,22 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     // MARK: - Actions register/login user
     
-    func fetchUser(_ uid: String) {
-        let ref = FIRDatabase.database().reference()
-        //let uid = FIRAuth.auth()?.currentUser?.uid
-        ref.child("users").child(uid).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            let uploads = snapshot.value as! [String: AnyObject]
-            
-            for (_,value) in uploads {
-                //dump(value)
-                if let name = value["name"] as? String {
-                    let userName = User(name: name, email: "", password: "")
-                    self.currentUser = userName
-                }
-            }
-        })
-        ref.removeAllObservers()
-    }
+    //    func fetchUser(_ uid: String) {
+    //        let ref = FIRDatabase.database().reference()
+    //        //let uid = FIRAuth.auth()?.currentUser?.uid
+    //        ref.child("users").child(uid).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+    //            let uploads = snapshot.value as! [String: AnyObject]
+    //
+    //            for (_,value) in uploads {
+    //                //dump(value)
+    //                if let name = value["name"] as? String {
+    //                    let userName = User(name: name, email: "", password: "")
+    //                    self.currentUser = userName
+    //                }
+    //            }
+    //        })
+    //        ref.removeAllObservers()
+    //    }
     
     func buttonFunctions() {
         registerButton.addTarget(self, action: #selector(tappedRegisterButton(sender:)), for: .touchUpInside)
@@ -127,7 +121,9 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
                 //
                 if self.usernameTextField.text?.characters.count == 0 {
                     let alertController = UIAlertController(title: "Error", message: "Don't forget to enter your name.", preferredStyle: .alert)
-                    let defautAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    let defautAction = UIAlertAction(title: "OK", style: .default, handler:{ (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
                     alertController.addAction(defautAction)
                     self.present(alertController, animated: true, completion: nil)
                     
@@ -136,65 +132,102 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
                 if (self.passwordTextField.text?.characters.count)! < 6 {
                     
                     let alertController = UIAlertController(title: "Error", message: "Be sure to enter the correct password", preferredStyle: .alert)
-                    let defautAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    let defautAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
                     alertController.addAction(defautAction)
                     self.present(alertController, animated: true, completion: nil)
                 } else {
                     
                     let alertController = UIAlertController(title: "Unknown Error", message: "\(error!.localizedDescription)", preferredStyle: .alert)
-                    let defautAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    let defautAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
                     alertController.addAction(defautAction)
                     self.present(alertController, animated: true, completion: nil)
                 }
                 //
                 return
+            } else {
+                let alertController = UIAlertController(title: "Success", message: "Log In Successful", preferredStyle: .alert)
+                let defautAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(defautAction)
+                self.present(alertController, animated: true, completion: nil)
             }
             
-            if user != nil {
-                self.animator = UIDynamicAnimator(referenceView: self.view)
-                self.gravity = UIGravityBehavior(items: [self.logo])
-                self.animator.addBehavior(self.gravity)
-                
-//                let profileViewController =  ProfileViewController()
-//                profileViewController.transitioningDelegate = self
-//                profileViewController.modalPresentationStyle = .custom
-//                
-//                //segue this data
-//                profileViewController.currentUserUid = self.currenUserId
-//                //self.pushViewController(profileViewController, animated: true)
-//                self.navigationController?.pushViewController(profileViewController, animated: true)
-//                print("signed in")
-                
-            }
         })
-        
     }
+    
+//            if user != nil {
+//                self.animator = UIDynamicAnimator(referenceView: self.view)
+//                self.gravity = UIGravityBehavior(items: [self.logo])
+//                self.animator.addBehavior(self.gravity)
+            
+                //                let profileViewController =  ProfileViewController()
+                //                profileViewController.transitioningDelegate = self
+                //                profileViewController.modalPresentationStyle = .custom
+                //
+                //                //segue this data
+                //                profileViewController.currentUserUid = self.currenUserId
+                //                //self.pushViewController(profileViewController, animated: true)
+                //                self.navigationController?.pushViewController(profileViewController, animated: true)
+                //                print("signed in")
+                
+//            }
+////        })
+//        
+//    }
     
     
     internal func tappedRegisterButton(sender: UIButton) {
+        guard let email = usernameTextField.text,
+            let password = passwordTextField.text else { return }
         
-        let registerViewController = RegisterViewController()
-        registerViewController.transitioningDelegate = self
-        registerViewController.modalPresentationStyle = .custom
-        
-        self.navigationController?.pushViewController(registerViewController, animated: true)
-        //self.present(registerViewController, animated: true, completion: nil)
-        
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            if error == nil {
+                let alertController = UIAlertController(title: "Registered", message: "Registration Successful!", preferredStyle: .alert)
+                let defautAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(defautAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+            } else {
+                let alertController = UIAlertController(title: "Error", message: "Error, please try again.", preferredStyle: .alert)
+                let defautAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(defautAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+            }
+        })
     }
     
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .present
-        transition.startingPoint = registerButton.center
-        
-        return transition
-    }
+    //        let registerViewController = RegisterViewController()
+    //        registerViewController.transitioningDelegate = self
+    //        registerViewController.modalPresentationStyle = .custom
+    //
+    //        self.navigationController?.pushViewController(registerViewController, animated: true)
+    //        //self.present(registerViewController, animated: true, completion: nil)
+    //
+    //    }
     
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .dismiss
-        transition.startingPoint = registerButton.center
-        
-        return transition
-    }
+    //    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //        transition.transitionMode = .present
+    //        transition.startingPoint = registerButton.center
+    //
+    //        return transition
+    //    }
+    //
+    //    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //        transition.transitionMode = .dismiss
+    //        transition.startingPoint = registerButton.center
+    //
+    //        return transition
+    //    }
     
     
     // MARK: - Lazy Init
@@ -207,7 +240,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     internal lazy var usernameTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "Username/Email", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
-        textField.textColor = UIColor.black 
+        textField.textColor = UIColor.black
         textField.backgroundColor = UIColor.lightGray
         return textField
     }()
