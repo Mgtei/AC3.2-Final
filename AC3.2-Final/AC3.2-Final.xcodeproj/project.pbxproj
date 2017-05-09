@@ -13,8 +13,6 @@
 		1EA113091E53C0B1004B66E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA113071E53C0B1004B66E3 /* LaunchScreen.storyboard */; };
 		1EA113131E53C130004B66E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EA113121E53C130004B66E3 /* GoogleService-Info.plist */; };
 		28BC40411E54B87700C3DB56 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40401E54B87700C3DB56 /* User.swift */; };
-		28BC40431E54BFAE00C3DB56 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40421E54BFAE00C3DB56 /* RegisterViewController.swift */; };
-		28BC40451E54C78C00C3DB56 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40441E54C78B00C3DB56 /* CircularTransition.swift */; };
 		28BC40471E54DFB200C3DB56 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40461E54DFB200C3DB56 /* Post.swift */; };
 		28BC40491E54E0A200C3DB56 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40481E54E0A200C3DB56 /* GalleryViewController.swift */; };
 		28BC404B1E54E2A500C3DB56 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC404A1E54E2A500C3DB56 /* UploadViewController.swift */; };
@@ -34,8 +32,6 @@
 		1EA1130A1E53C0B1004B66E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EA113121E53C130004B66E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28BC40401E54B87700C3DB56 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		28BC40421E54BFAE00C3DB56 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		28BC40441E54C78B00C3DB56 /* CircularTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularTransition.swift; path = ../CircularTransition.swift; sourceTree = "<group>"; };
 		28BC40461E54DFB200C3DB56 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		28BC40481E54E0A200C3DB56 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		28BC404A1E54E2A500C3DB56 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
@@ -89,10 +85,8 @@
 				28BC40481E54E0A200C3DB56 /* GalleryViewController.swift */,
 				8182F4CC1EAAA5990049CEE4 /* GalleryTableViewCell.swift */,
 				28BC404E1E54E55900C3DB56 /* UploadCollectionViewCell.swift */,
-				28BC40441E54C78B00C3DB56 /* CircularTransition.swift */,
 				28BC40401E54B87700C3DB56 /* User.swift */,
 				1EA113001E53C0B1004B66E3 /* ViewController.swift */,
-				28BC40421E54BFAE00C3DB56 /* RegisterViewController.swift */,
 				1EA113051E53C0B1004B66E3 /* Assets.xcassets */,
 				1EA113071E53C0B1004B66E3 /* LaunchScreen.storyboard */,
 				1EA1130A1E53C0B1004B66E3 /* Info.plist */,
@@ -245,12 +239,10 @@
 				28BC404B1E54E2A500C3DB56 /* UploadViewController.swift in Sources */,
 				28BC40491E54E0A200C3DB56 /* GalleryViewController.swift in Sources */,
 				28BC40571E54E84F00C3DB56 /* CategoriesUploadCollectionViewCell.swift in Sources */,
-				28BC40451E54C78C00C3DB56 /* CircularTransition.swift in Sources */,
 				1EA113011E53C0B1004B66E3 /* ViewController.swift in Sources */,
 				1EA112FF1E53C0B1004B66E3 /* AppDelegate.swift in Sources */,
 				8182F4CD1EAAA5990049CEE4 /* GalleryTableViewCell.swift in Sources */,
 				28BC40411E54B87700C3DB56 /* User.swift in Sources */,
-				28BC40431E54BFAE00C3DB56 /* RegisterViewController.swift in Sources */,
 				28BC40591E54E91C00C3DB56 /* CategoryCollectionViewCell.swift in Sources */,
 				28BC404F1E54E55900C3DB56 /* UploadCollectionViewCell.swift in Sources */,
 			);
