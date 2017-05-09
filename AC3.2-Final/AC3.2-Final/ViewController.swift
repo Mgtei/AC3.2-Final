@@ -12,12 +12,8 @@ import Firebase
 import FirebaseAuth
 
 class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
-    let transition = CircularTransition()
     var currentUser: User?
     var currentUserId: String?
-    
-    var gravity: UIGravityBehavior!
-    var animator: UIDynamicAnimator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,23 +79,6 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     // MARK: - Actions register/login user
     
-    //    func fetchUser(_ uid: String) {
-    //        let ref = FIRDatabase.database().reference()
-    //        //let uid = FIRAuth.auth()?.currentUser?.uid
-    //        ref.child("users").child(uid).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-    //            let uploads = snapshot.value as! [String: AnyObject]
-    //
-    //            for (_,value) in uploads {
-    //                //dump(value)
-    //                if let name = value["name"] as? String {
-    //                    let userName = User(name: name, email: "", password: "")
-    //                    self.currentUser = userName
-    //                }
-    //            }
-    //        })
-    //        ref.removeAllObservers()
-    //    }
-    
     func buttonFunctions() {
         registerButton.addTarget(self, action: #selector(tappedRegisterButton(sender:)), for: .touchUpInside)
         
@@ -160,27 +139,6 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         })
     }
     
-//            if user != nil {
-//                self.animator = UIDynamicAnimator(referenceView: self.view)
-//                self.gravity = UIGravityBehavior(items: [self.logo])
-//                self.animator.addBehavior(self.gravity)
-            
-                //                let profileViewController =  ProfileViewController()
-                //                profileViewController.transitioningDelegate = self
-                //                profileViewController.modalPresentationStyle = .custom
-                //
-                //                //segue this data
-                //                profileViewController.currentUserUid = self.currenUserId
-                //                //self.pushViewController(profileViewController, animated: true)
-                //                self.navigationController?.pushViewController(profileViewController, animated: true)
-                //                print("signed in")
-                
-//            }
-////        })
-//        
-//    }
-    
-    
     internal func tappedRegisterButton(sender: UIButton) {
         guard let email = usernameTextField.text,
             let password = passwordTextField.text else { return }
@@ -205,30 +163,6 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
             }
         })
     }
-    
-    //        let registerViewController = RegisterViewController()
-    //        registerViewController.transitioningDelegate = self
-    //        registerViewController.modalPresentationStyle = .custom
-    //
-    //        self.navigationController?.pushViewController(registerViewController, animated: true)
-    //        //self.present(registerViewController, animated: true, completion: nil)
-    //
-    //    }
-    
-    //    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    //        transition.transitionMode = .present
-    //        transition.startingPoint = registerButton.center
-    //
-    //        return transition
-    //    }
-    //
-    //    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    //        transition.transitionMode = .dismiss
-    //        transition.startingPoint = registerButton.center
-    //
-    //        return transition
-    //    }
-    
     
     // MARK: - Lazy Init
     internal lazy var logo: UIImageView = {
