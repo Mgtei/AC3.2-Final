@@ -77,8 +77,8 @@
 		1EA112FD1E53C0B1004B66E3 /* AC3.2-Final */ = {
 			isa = PBXGroup;
 			children = (
-				28BC40581E54E91C00C3DB56 /* CategoryCollectionViewCell.swift */,
 				1EA112FE1E53C0B1004B66E3 /* AppDelegate.swift */,
+				28BC40581E54E91C00C3DB56 /* CategoryCollectionViewCell.swift */,
 				28BC404A1E54E2A500C3DB56 /* UploadViewController.swift */,
 				28BC40561E54E84F00C3DB56 /* CategoriesUploadCollectionViewCell.swift */,
 				28BC40461E54DFB200C3DB56 /* Post.swift */,

@@ -207,23 +207,6 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoriesUploadCollectionViewCell
-//        let category = categories[indexPath.row]
-//        cell.categoriesLabel.text = category
-//        
-//        
-//        let gallerycollectionView = GalleryCollectionViewController()
-//        gallerycollectionView.categorySelected = category
-//        //present(gallerycollectionView, animated: true, completion: nil)
-//        navigationController?.pushViewController(gallerycollectionView, animated: true)
-//        
-//        
-//        //for firebase
-//        self.categoryLabel = category
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: view.frame.width/5, height: 30)
@@ -259,9 +242,6 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
         barButtonItem.style = .plain
         barButtonItem.target = self
         barButtonItem.action = #selector(uploadButtonPressed)
-        //barButtonItem.action = #selector(presentPic)
-        //barButtonItem.action = #selector(showBlackScreen)
-        //barButtonItem.tintColor = EyeVoteColor.accentColor
         return barButtonItem
     }()
     

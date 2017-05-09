@@ -20,15 +20,9 @@ class CategoriesUploadCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        //categoriesLabel.textColor = EyeVoteColor.textIconColor
-        //categoriesLabel.layer.borderColor = EyeVoteColor.textIconColor.cgColor
-        //categoriesLabel.layer.borderWidth = 0.8
-        //categoriesLabel.textAlignment = .center
-        //categoriesLabel.sizeToFit()
         categoriesLabel.numberOfLines = 0
         categoriesLabel.backgroundColor = UIColor.white
-        //categoriesLabel.setContentHuggingPriority(0.0, for: .horizontal)
-        //categoriesLabel.text = ""
+        
         
         contentView.addSubview(categoriesLabel)
         categoriesLabel.snp.makeConstraints({ (view) in
