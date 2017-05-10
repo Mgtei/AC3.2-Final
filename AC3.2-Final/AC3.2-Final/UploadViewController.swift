@@ -90,8 +90,8 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
         let ref = FIRDatabase.database().reference()
         let storage = FIRStorage.storage().reference(forURL: "gs://ac-32-final.appspot.com")
         
-        let key = ref.child("uploads").childByAutoId().key
-        let imageRef = storage.child("uploads").child(uid).child("\(key).jpg")
+        let key = ref.child("images").childByAutoId().key
+        let imageRef = storage.child("images").child(uid).child("\(key).jpg")
         
         let data = UIImageJPEGRepresentation(self.centerImageView.image!, 0.6)
         
@@ -186,9 +186,6 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.buttonCategoriesCollectionView {
-            return categories.count
-        }
         return 5
     }
     
