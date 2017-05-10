@@ -10,13 +10,11 @@ import UIKit
 import Firebase
 
 
-class UploadViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var user: User?
     var post = [Post]()
     let picker = UIImagePickerController()
-    let categories = ["one category"]
-    var categoryLabel = ""
     private let reuseId = "cellID"
     private let cellId = "cellId"
     var progressView: UIProgressView!
@@ -108,13 +106,11 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
                         "pathToImage" : url.absoluteString,
                         "imageTitle" : imageTitle,
                         "author" : postName,
-                        "postID" : key,
-                        "category" : self.categoryLabel]
+                        "postID" : key]
                     
                     let postPic = ["\(key)" : pic]
                     
                     ref.child("uploads").updateChildValues(postPic)
-                    ref.child("Categories").child(self.categoryLabel).updateChildValues(postPic)
                     
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -151,17 +147,17 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
             view.top.equalTo(containerView.snp.top).offset(5)
             view.centerX.equalTo(containerView.snp.centerX)
         })
-        // CollectionView
-        buttonCategoriesCollectionView.snp.makeConstraints({ (view) in
-            view.bottom.equalTo(containerView.snp.bottom)
-            view.leading.equalTo(containerView.snp.leading)
-            view.trailing.equalTo(containerView.snp.trailing)
-            view.top.equalTo(photoTitletextField.snp.bottom)
-            
-            buttonCategoriesCollectionView.delegate = self
-            buttonCategoriesCollectionView.dataSource = self
-            buttonCategoriesCollectionView.register(CategoriesUploadCollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
-        })
+//        // CollectionView
+//        buttonCategoriesCollectionView.snp.makeConstraints({ (view) in
+//            view.bottom.equalTo(containerView.snp.bottom)
+//            view.leading.equalTo(containerView.snp.leading)
+//            view.trailing.equalTo(containerView.snp.trailing)
+//            view.top.equalTo(photoTitletextField.snp.bottom)
+//            
+//            buttonCategoriesCollectionView.delegate = self
+//            buttonCategoriesCollectionView.dataSource = self
+//            buttonCategoriesCollectionView.register(CategoriesUploadCollectionViewCell.self, forCellWithReuseIdentifier: reuseId)
+//        })
         
         uploadsCollectionView.snp.makeConstraints ({ (view) in
             view.top.equalTo(centerImageView.snp.bottom)
@@ -181,33 +177,33 @@ class UploadViewController: UIViewController, UICollectionViewDelegate, UICollec
     //  copy and pasted from LoginView. Get code working
     // MARK: - CollectionView
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 5
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if collectionView == buttonCategoriesCollectionView {
-            let buttonCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoriesUploadCollectionViewCell
-            buttonCell.backgroundColor = UIColor.white
-            let category = categories[indexPath.row]
-            buttonCell.categoriesLabel.text = category
-            return buttonCell
-        } else {
-            let uploadCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UploadCollectionViewCell
-            uploadCell.uploadImage.image = #imageLiteral(resourceName: "upload")
-            return uploadCell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: view.frame.width/5, height: 30)
-    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        
+//        if collectionView == buttonCategoriesCollectionView {
+//            let buttonCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CategoriesUploadCollectionViewCell
+//            buttonCell.backgroundColor = UIColor.white
+//            let category = categories[indexPath.row]
+//            buttonCell.categoriesLabel.text = category
+//            return buttonCell
+//        } else {
+//            let uploadCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UploadCollectionViewCell
+//            uploadCell.uploadImage.image = #imageLiteral(resourceName: "upload")
+//            return uploadCell
+//        }
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        
+//        return CGSize(width: view.frame.width/5, height: 30)
+//    }
     
     
     // MARK: - Lazy Init
