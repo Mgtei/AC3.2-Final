@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.viewControllers = [navControllerLeft, navControllerRight]
         
         galleryVC.tabBarItem = UITabBarItem(title: "Feed", image: #imageLiteral(resourceName: "chickenleg"), tag: 1)
-        uploadVC.tabBarItem = UITabBarItem(title: "Gallery", image: #imageLiteral(resourceName: "camera_icon"), tag: 2)
+        uploadVC.tabBarItem = UITabBarItem(title: "Gallery", image: #imageLiteral(resourceName: "upload") , tag: 2)
         
         navControllerLeft.navigationBar.barTintColor = UIColor.white
         navControllerLeft.navigationBar.topItem?.title = "Unit6Final-stagram"

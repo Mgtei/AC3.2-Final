@@ -28,10 +28,20 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         configureConstraints()
         view.setNeedsLayout()
         picker.delegate = self
-        navigationItem.rightBarButtonItem = upArrow
+        
+        let doneButton = UIBarButtonItem()
+        doneButton.title = "Done"
+        doneButton.target = self
+        doneButton.action = #selector(doneButtonPressed(sender:))
+        navigationItem.rightBarButtonItem = doneButton
     }
 
     //MARK: - Actions - Photo upload
+    func doneButtonPressed(sender: UIBarButtonItem) {
+        print("Done button pressed")
+    }
+    
+    
     func presentPic() {
         picker.allowsEditing = true
         picker.sourceType = .photoLibrary
