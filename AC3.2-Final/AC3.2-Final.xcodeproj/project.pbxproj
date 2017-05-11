@@ -16,8 +16,6 @@
 		28BC40471E54DFB200C3DB56 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40461E54DFB200C3DB56 /* Post.swift */; };
 		28BC40491E54E0A200C3DB56 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40481E54E0A200C3DB56 /* GalleryViewController.swift */; };
 		28BC404B1E54E2A500C3DB56 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC404A1E54E2A500C3DB56 /* UploadViewController.swift */; };
-		28BC404F1E54E55900C3DB56 /* UploadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC404E1E54E55900C3DB56 /* UploadCollectionViewCell.swift */; };
-		28BC40571E54E84F00C3DB56 /* CategoriesUploadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC40561E54E84F00C3DB56 /* CategoriesUploadCollectionViewCell.swift */; };
 		42F701846D7174CF5CCFFEC6 /* Pods_AC3_2_Final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA81E3A843E8FCC07FEEE67 /* Pods_AC3_2_Final.framework */; };
 		8182F4CD1EAAA5990049CEE4 /* GalleryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182F4CC1EAAA5990049CEE4 /* GalleryTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -34,8 +32,6 @@
 		28BC40461E54DFB200C3DB56 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		28BC40481E54E0A200C3DB56 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		28BC404A1E54E2A500C3DB56 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
-		28BC404E1E54E55900C3DB56 /* UploadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadCollectionViewCell.swift; sourceTree = "<group>"; };
-		28BC40561E54E84F00C3DB56 /* CategoriesUploadCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesUploadCollectionViewCell.swift; path = ../CategoriesUploadCollectionViewCell.swift; sourceTree = "<group>"; };
 		36FC7FDCA9319FBCD5A87DB8 /* Pods-AC3.2-Final.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AC3.2-Final.release.xcconfig"; path = "Pods/Target Support Files/Pods-AC3.2-Final/Pods-AC3.2-Final.release.xcconfig"; sourceTree = "<group>"; };
 		5B497AAB8F237B2B41EC1F79 /* Pods-AC3.2-Final.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AC3.2-Final.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AC3.2-Final/Pods-AC3.2-Final.debug.xcconfig"; sourceTree = "<group>"; };
 		8182F4CC1EAAA5990049CEE4 /* GalleryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTableViewCell.swift; sourceTree = "<group>"; };
@@ -77,8 +73,6 @@
 			children = (
 				1EA112FE1E53C0B1004B66E3 /* AppDelegate.swift */,
 				28BC404A1E54E2A500C3DB56 /* UploadViewController.swift */,
-				28BC404E1E54E55900C3DB56 /* UploadCollectionViewCell.swift */,
-				28BC40561E54E84F00C3DB56 /* CategoriesUploadCollectionViewCell.swift */,
 				28BC40461E54DFB200C3DB56 /* Post.swift */,
 				28BC40481E54E0A200C3DB56 /* GalleryViewController.swift */,
 				8182F4CC1EAAA5990049CEE4 /* GalleryTableViewCell.swift */,
@@ -235,12 +229,10 @@
 				28BC40471E54DFB200C3DB56 /* Post.swift in Sources */,
 				28BC404B1E54E2A500C3DB56 /* UploadViewController.swift in Sources */,
 				28BC40491E54E0A200C3DB56 /* GalleryViewController.swift in Sources */,
-				28BC40571E54E84F00C3DB56 /* CategoriesUploadCollectionViewCell.swift in Sources */,
 				1EA113011E53C0B1004B66E3 /* ViewController.swift in Sources */,
 				1EA112FF1E53C0B1004B66E3 /* AppDelegate.swift in Sources */,
 				8182F4CD1EAAA5990049CEE4 /* GalleryTableViewCell.swift in Sources */,
 				28BC40411E54B87700C3DB56 /* User.swift in Sources */,
-				28BC404F1E54E55900C3DB56 /* UploadCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
