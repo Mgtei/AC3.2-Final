@@ -29,11 +29,15 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         view.setNeedsLayout()
         picker.delegate = self
         
+        
+        
         let doneButton = UIBarButtonItem()
         doneButton.title = "Done"
         doneButton.target = self
         doneButton.action = #selector(doneButtonPressed(sender:))
         navigationItem.rightBarButtonItem = doneButton
+        
+        view.backgroundColor = UIColor.white
     }
 
     //MARK: - Actions - Photo upload
@@ -80,13 +84,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 //    }
     
     func dismissProgressBar() {
-        self.coloredView.alpha = 0
+        self.coloredView.alpha = 1
     }
     
     
     
     func uploadButtonPressed() {
-        
+        //put in upload to Firebase code
         print("button pressed")
         presentPic()
     }
@@ -181,12 +185,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         barButtonItem.action = #selector(uploadButtonPressed)
         return barButtonItem
     }()
-    
-//    internal var blackScreen: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = UIColor(white: 0, alpha: 0.5)
-//        return view
-//    }()
     
     internal var coloredView: UIView = {
         let view = UIView()
