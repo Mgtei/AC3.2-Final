@@ -45,9 +45,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         //need to put in code to upload to FB here
         print("Done button pressed")
     }
-    
-    
-    func presentPic() {
+
+    func presentPic(sender: UITapGestureRecognizer) {
         picker.allowsEditing = true
         picker.sourceType = .photoLibrary
         
@@ -65,34 +64,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         addPhotoToDB()
     }
     
-//    func showBlackScreen() {
-//        if let window = UIApplication.shared.keyWindow {
-//            blackScreen.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissProgressBar)))
-//            
-//            window.addSubview(blackScreen)
-//            blackScreen.frame = window.frame
-//            blackScreen.alpha = 0
-//            
-//            
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                
-//                self.blackScreen.alpha = 1
-//                
-//            }, completion: nil)
-//            
-//        }
-//    }
-    
     func dismissProgressBar() {
         self.coloredView.alpha = 1
-    }
-    
-    
-    
-    func uploadButtonPressed() {
-        //put in upload to Firebase code
-        print("button pressed")
-        presentPic()
     }
     
     func addPhotoToDB() {
@@ -153,26 +126,30 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         })
         // Comment Text Field
         commentTextField.snp.makeConstraints({ (view) in
-            view.width.equalTo(centerImageView.snp.width)
-            view.height.equalTo(100)
+            view.width.equalTo(centerImageView.snp.width).multipliedBy(0.9)
+            view.height.equalTo(150)
             view.top.equalTo(centerImageView.snp.bottom).offset(5)
             view.centerX.equalTo(centerImageView.snp.centerX)
         })
     }
     
     // MARK: - Lazy Init
-    internal lazy var commentTextField: UITextField = {
-        var textField = UITextField()
-        textField.placeholder = "Comment here"
-        textField.attributedPlaceholder = NSAttributedString(string: "Comment", attributes: [NSForegroundColorAttributeName : UIColor.darkGray ])
+    internal lazy var commentTextField: UITextView = {
+        var textField = UITextView()
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.darkGray.cgColor
+        textField.layer.cornerRadius = 5
         return textField
     }()
     
     internal lazy var centerImageView: UIImageView = {
         var imageView = UIImageView()
+        let tapGestures = UITapGestureRecognizer(target: self, action: #selector(presentPic(sender:)))
+        
         imageView.image = UIImage(named: "camera_icon")
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
+        imageView.gestureRecognizers = [tapGestures]
         
         return imageView
     }()
@@ -182,7 +159,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         barButtonItem.image = #imageLiteral(resourceName: "upload")
         barButtonItem.style = .plain
         barButtonItem.target = self
-        barButtonItem.action = #selector(uploadButtonPressed)
+        barButtonItem.action = #selector(doneButtonPressed(sender:))
         return barButtonItem
     }()
     
@@ -191,6 +168,4 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         view.backgroundColor = UIColor.white
         return view
     }()
-    
-    
 }
