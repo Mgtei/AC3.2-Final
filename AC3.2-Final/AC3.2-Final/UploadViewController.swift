@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     var user: User?
     var post = [Post]()
@@ -24,7 +24,9 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         setupViewHierarchy()
         configureConstraints()
         view.setNeedsLayout()
+        setTextView()
         picker.delegate = self
+        
         
         let doneButton = UIBarButtonItem()
         doneButton.title = "Done"
@@ -33,6 +35,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         navigationItem.rightBarButtonItem = doneButton
         
         view.backgroundColor = UIColor.white
+    }
+    
+    func setTextView() {
+        commentTextView.delegate = self
+        commentTextView.text = "Add a description..."
+        commentTextView.textColor = UIColor.lightGray
+        commentTextView.layer.borderWidth = 1
+        commentTextView.layer.borderColor = UIColor.gray.cgColor
     }
 
     //MARK: - Actions - Photo upload
@@ -88,7 +98,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 //        }
 //        uploadTask.resume()
         
-        let post = Post(key: postRef.key, comment: commentTextField.text!)
+        let post = Post(key: postRef.key, comment: commentTextView.text!)
         let postDict = ["comment" : post.comment]
         
         postRef.setValue(postDict, withCompletionBlock: { (error: Error?, reference: FIRDatabaseReference) in
@@ -100,10 +110,25 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         
     }
     
+    //MARK: - TextView Delegate Methods
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+               textView.textColor = UIColor.black
+           }
+      }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+       if textView.text.isEmpty {
+            textView.text = "Add a description..."
+                textView.textColor = UIColor.lightGray
+            }
+       }
+    
     // MARK: - Setup
     func setupViewHierarchy() {
         view.addSubview(centerImageView)
-        view.addSubview(commentTextField)
+        view.addSubview(commentTextView)
     }
     
     private func configureConstraints() {
@@ -115,8 +140,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             view.height.equalTo(self.view.snp.width)
             view.top.equalToSuperview().offset(5)
         })
-        // Comment Text Field
-        commentTextField.snp.makeConstraints({ (view) in
+        // Comment Text View
+        commentTextView.snp.makeConstraints({ (view) in
             view.width.equalTo(centerImageView.snp.width).multipliedBy(0.9)
             view.height.equalTo(150)
             view.top.equalTo(centerImageView.snp.bottom).offset(5)
@@ -125,12 +150,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     // MARK: - Lazy Init
-    internal lazy var commentTextField: UITextView = {
-        var textField = UITextView()
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.darkGray.cgColor
-        textField.layer.cornerRadius = 5
-        return textField
+    internal lazy var commentTextView: UITextView = {
+        var textView = UITextView()
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.darkGray.cgColor
+        textView.layer.cornerRadius = 5
+        return textView
     }()
     
     internal lazy var centerImageView: UIImageView = {
