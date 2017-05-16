@@ -15,9 +15,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     var user: User?
     var post = [Post]()
     let picker = UIImagePickerController()
-    private let reuseId = "cellID"
-    private let cellId = "cellId"
-    var progressView: UIProgressView!
     var progressLabel: UILabel!
     
     
@@ -28,8 +25,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         configureConstraints()
         view.setNeedsLayout()
         picker.delegate = self
-        
-        
         
         let doneButton = UIBarButtonItem()
         doneButton.title = "Done"
@@ -42,7 +37,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     //MARK: - Actions - Photo upload
     func doneButtonPressed(sender: UIBarButtonItem) {
-        //need to put in code to upload to FB here
+        addPostToFB()
         print("Done button pressed")
     }
 
@@ -53,59 +48,55 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         present(picker, animated: true, completion: nil)
     }
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             self.centerImageView.image = image
         }
         
         self.dismiss(animated: true, completion: nil)
-        //showBlackScreen()
-        addPhotoToDB()
     }
     
-    func dismissProgressBar() {
-        self.coloredView.alpha = 1
-    }
-    
-    func addPhotoToDB() {
-        guard let currentUser = FIRAuth.auth()?.currentUser else { return }
-        guard let postName = currentUser.displayName else { return }
-        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
-        //guard let imageTitle = photoTitletextField.text else { return }
-        let ref = FIRDatabase.database().reference()
+    func addPostToFB() {
+        guard (FIRAuth.auth()?.currentUser) != nil else { return }
+        let databaseRef = FIRDatabase.database().reference()
+        let postRef = databaseRef.child("posts").childByAutoId()
+        
         let storage = FIRStorage.storage().reference(forURL: "gs://ac-32-final.appspot.com")
+        //add new record to FB Database
+        let imageStorageRef = storage.child("images/\(postRef.key)")
         
-        let key = ref.child("images").childByAutoId().key
-        let imageRef = storage.child("images").child(uid).child("\(key).jpg")
+        let imageData = UIImageJPEGRepresentation(self.centerImageView.image!, 0.6)
+        //adding image to FB Storage
         
-        let data = UIImageJPEGRepresentation(self.centerImageView.image!, 0.6)
+        let metaData = FIRStorageMetadata()
+        metaData.cacheControl = "public,max-age=300"
+        metaData.contentType = "image/jpeg"
         
-        let uploadTask = imageRef.put(data!, metadata: nil) { (metadata, error) in
+        _ = imageStorageRef.put(imageData!, metadata: metaData, completion: { (metadata, error) in
             if error != nil {
                 print(error!.localizedDescription)
                 return
             }
-            
-            imageRef.downloadURL(completion: { (url, error) in
-                if let url = url {
-                    let pic: [String: Any] = [
-                        "userID" : uid,
-                        "pathToImage" : url.absoluteString,
-                        //"imageTitle" : imageTitle,
-                        "author" : postName,
-                        "postID" : key]
-                    
-                    let postPic = ["\(key)" : pic]
-                    
-                    ref.child("uploads").updateChildValues(postPic)
-                    
-                    self.dismiss(animated: true, completion: nil)
-                }
-            })
-            
-        }
-        uploadTask.resume()
+        })
+        
+//        let uploadTask = imageStorageRef.put(imageData!, metadata: nil) { (metadata, error) in
+//            if error != nil {
+//                print(error!.localizedDescription)
+//                return
+//            }
+//            
+//        }
+//        uploadTask.resume()
+        
+        let post = Post(key: postRef.key, comment: commentTextField.text!)
+        let postDict = ["comment" : post.comment]
+        
+        postRef.setValue(postDict, withCompletionBlock: { (error: Error?, reference: FIRDatabaseReference) in
+            if error != nil {
+                print("Error uploading Post to Database: \(error)")
+            }
+        })
+        
         
     }
     

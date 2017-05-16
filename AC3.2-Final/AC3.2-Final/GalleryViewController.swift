@@ -42,21 +42,23 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let vc = ViewController()
         self.present(vc, animated: true, completion: nil)
         return
+        //do I need a .resume or something else here?
     }
     
     func populatePosts() {
         let ref = FIRDatabase.database().reference()
         ref.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
             if let posts = snapshot.value as? [String: AnyObject] {
-                
+                var postArr: [Post] = []
                 for (key,value) in posts {
                     
                     if let comment = value["comment"] as? String {
                         let post = Post(key: key, comment: comment)
-                        self.posts.append(post)
+                        postArr.append(post)
                     }
                     
                 }
+                self.posts = postArr.reversed()
                 self.categoryTableView.reloadData()
             }
         })
