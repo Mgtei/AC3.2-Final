@@ -27,7 +27,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         setTextView()
         picker.delegate = self
         
-        
         let doneButton = UIBarButtonItem()
         doneButton.title = "Done"
         doneButton.target = self
@@ -89,14 +88,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         })
         
-//        let uploadTask = imageStorageRef.put(imageData!, metadata: nil) { (metadata, error) in
-//            if error != nil {
-//                print(error!.localizedDescription)
-//                return
-//            }
-//            
-//        }
-//        uploadTask.resume()
+        //        let uploadTask = imageStorageRef.put(imageData!, metadata: nil) { (metadata, error) in
+        //            if error != nil {
+        //                print(error!.localizedDescription)
+        //                return
+        //            }
+        //
+        //        }
+        //        uploadTask.resume()
         
         let post = Post(key: postRef.key, comment: commentTextView.text!)
         let postDict = ["comment" : post.comment]
@@ -105,9 +104,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             if error != nil {
                 print("Error uploading Post to Database: \(error)")
             }
+            else {
+                print(reference)
+                self.showOKAlert(title: "Success!", message: "Photo Uploaded to Meatly Successfuly", completion: {
+                })
+            }
         })
-        
-        
     }
     
     //MARK: - TextView Delegate Methods
@@ -124,6 +126,15 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 textView.textColor = UIColor.lightGray
             }
        }
+    //MARK: - Helper Functions
+    
+    func showOKAlert(title: String, message: String?, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "OK", style: .cancel) { (_) in
+        }
+        alert.addAction(okayAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - Setup
     func setupViewHierarchy() {
