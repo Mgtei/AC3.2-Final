@@ -15,7 +15,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     var user: User?
     var post = [Post]()
     let picker = UIImagePickerController()
-    var progressLabel: UILabel!
     
     
     // MARK: - View Lifecycle
@@ -179,20 +178,5 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         imageView.gestureRecognizers = [tapGestures]
         
         return imageView
-    }()
-    
-    internal lazy var upArrow: UIBarButtonItem = {
-        var barButtonItem = UIBarButtonItem()
-        barButtonItem.image = #imageLiteral(resourceName: "upload")
-        barButtonItem.style = .plain
-        barButtonItem.target = self
-        barButtonItem.action = #selector(doneButtonPressed(sender:))
-        return barButtonItem
-    }()
-    
-    internal var coloredView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        return view
     }()
 }
