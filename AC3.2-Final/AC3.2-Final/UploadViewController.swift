@@ -22,7 +22,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         setupViewHierarchy()
         configureConstraints()
-        view.setNeedsLayout()
         setTextView()
         picker.delegate = self
         
@@ -86,15 +85,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 return
             }
         })
-        
-        //        let uploadTask = imageStorageRef.put(imageData!, metadata: nil) { (metadata, error) in
-        //            if error != nil {
-        //                print(error!.localizedDescription)
-        //                return
-        //            }
-        //
-        //        }
-        //        uploadTask.resume()
         
         let post = Post(key: postRef.key, comment: commentTextView.text!)
         let postDict = ["comment" : post.comment]

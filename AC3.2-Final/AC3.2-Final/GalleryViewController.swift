@@ -18,19 +18,23 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
-        populatePosts()
         
         //checks if user is logged in
         if FIRAuth.auth()?.currentUser == nil {
             let vc = ViewController()
             present(vc, animated: true, completion: nil)
         }
-    let logoutButton = UIBarButtonItem()
+        
+        let logoutButton = UIBarButtonItem()
         logoutButton.title = "Log Out"
         logoutButton.target = self
         logoutButton.action = #selector(logoutButtonPressed(sender:))
         navigationItem.rightBarButtonItem = logoutButton
+        
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        populatePosts()
     }
     
     func logoutButtonPressed(sender: UIBarButtonItem) {
@@ -87,7 +91,7 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.commentLabel.text = post.comment
         cell.commentLabel.numberOfLines = 0
-
+        
         
         let storage = FIRStorage.storage()
         cell.postImageView.image = nil
@@ -99,8 +103,10 @@ class GalleryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error)
             } else {
                 // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
-                cell.postImageView.image = image
+                if cell == tableView.cellForRow(at: indexPath) {
+                    let image = UIImage(data: data!)
+                    cell.postImageView.image = image
+                }
             }
         }
         return cell
